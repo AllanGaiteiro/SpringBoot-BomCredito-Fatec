@@ -12,10 +12,7 @@ public class BomcreditoApplication {
 
 	public static void main(String[] args) {
 		
-		User user = new User("333-333-33","allan");
-		Institution institution = new Institution("caixa","Caixa");
-		OpportunityService.create(user, institution);
-		//SpringApplication.run(BomcreditoApplication.class, args);
+		SpringApplication.run(BomcreditoApplication.class, args);
 	}
 
 }
