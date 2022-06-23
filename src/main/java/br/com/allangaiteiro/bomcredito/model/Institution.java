@@ -1,10 +1,16 @@
 package br.com.allangaiteiro.bomcredito.model;
 
-public class Institution {
-    public String name;
+import java.util.Date;
 
-    public Institution(String nome) {
-        this.name = nome;
+public class Institution {
+    public String id;
+    public String name;
+    public Date createdAt;
+
+    public Institution(String id, String name) {
+        this.id = id;
+        this.name = name;
+        this.createdAt = new Date();
     }
 
     
