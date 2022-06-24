@@ -1,14 +1,73 @@
 package br.com.allangaiteiro.bomcredito.services;
 
-import br.com.allangaiteiro.bomcredito.model.Institution;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.com.allangaiteiro.bomcredito.model.Opportunity;
-import br.com.allangaiteiro.bomcredito.model.User;
+import br.com.allangaiteiro.bomcredito.repositories.OpportunityRepository;
 
+@Service
 public class OpportunityService {
-    
-    public static void create(User user,Institution institution) {
-        Opportunity opportunity = new Opportunity(user.name, institution.name);
+    @Autowired
+    private OpportunityRepository repository;
 
-        System.out.println(opportunity.toString());
+    public Opportunity create(Opportunity opportunity) throws Exception {
+        try {
+            opportunity.setCreatedAt(new Date());
+            Opportunity opportunityRepo = repository.save(opportunity);
+            System.out.println("Opportunity Service Create - Succes"+opportunityRepo.toString());
+            return opportunity;
+        } catch (Exception e) {
+            System.out.println("Opportunity Service Create - Not Found");
+            throw new Exception("not-create");
+        }
+
+    }
+
+    public Opportunity update(Integer id, Opportunity opportunityUpdate) throws Exception {
+        try {
+            Opportunity opportunityRepo = repository.findById(id).get();
+            opportunityRepo.setInstitution(opportunityUpdate.getInstitution());
+            opportunityRepo.setCustomer(opportunityUpdate.getCustomer());
+            Opportunity opportunity = repository.save(opportunityRepo);
+            System.out.println("Opportunity Service Update - Succes");
+            return opportunity;
+        } catch (Exception e) {
+            System.out.println("Opportunity Service Update - Not Found");
+            throw new Exception("not-found");
+        }
+    }
+
+    public Opportunity findById(Integer id) throws Exception {
+        try {
+            Opportunity opportunity = repository.findById(id).get();
+            System.out.println("Opportunity Service Find By Id - Succes");
+            return opportunity;
+        } catch (Exception e) {
+            System.out.println("Opportunity Service  Find By Id - Not Found");
+            throw new Exception("not-found");
+        }
+    }
+
+    public List<Opportunity> findAll() {
+        List<Opportunity> opportunities = new ArrayList<Opportunity>();
+        opportunities = repository.findAll();
+        return opportunities;
+    }
+
+    public void delete(Integer id) throws Exception {
+        try {
+            repository.deleteById(id);
+            System.out.println("Opportunity Service Delete - Succes");
+            return;
+        } catch (Exception e) {
+            System.out.println("Opportunity Service Delete - Not Found");
+            throw new Exception("not-delte");
+        }
+
     }
 }
