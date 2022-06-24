@@ -19,16 +19,16 @@ import br.com.allangaiteiro.bomcredito.model.Customer;
 import br.com.allangaiteiro.bomcredito.services.CustomerService;
 
 @RestController
-@RequestMapping("/api/v1/customer")
+@RequestMapping("/api/v1/customers")
 public class CustomerResource {
     @Autowired
     private CustomerService service;
 
     @GetMapping("/")
     public ResponseEntity<List<Customer>> getAll() {
-        System.out.println("Get All Customer");
-        List<Customer> customer = service.findAll();
-        return ResponseEntity.ok().body(customer);
+        System.out.println("Get All Customers");
+        List<Customer> customers = service.findAll();
+        return ResponseEntity.ok().body(customers);
 
     }
 
@@ -48,8 +48,8 @@ public class CustomerResource {
     public ResponseEntity<URI> create(@RequestBody Customer customer) {
         System.out.println("Create Customer");
         try {
-            Customer u = service.create(customer);
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(u.getId()).toUri();
+            Customer co = service.create(customer);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(co.getId()).toUri();
             return ResponseEntity.ok().body(uri);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -61,8 +61,8 @@ public class CustomerResource {
     public ResponseEntity<URI> create(@PathVariable("id") Integer id, @RequestBody Customer customer) {
         System.out.println("Delete Customer");
         try {
-            Customer ua = service.update(id, customer);
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ua.getId()).toUri();
+            Customer co = service.update(id, customer);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(co.getId()).toUri();
             return ResponseEntity.created(uri).build();
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
