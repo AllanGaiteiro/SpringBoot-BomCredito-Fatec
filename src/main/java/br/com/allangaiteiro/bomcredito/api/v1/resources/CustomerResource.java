@@ -15,29 +15,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.allangaiteiro.bomcredito.model.UserAuth;
-import br.com.allangaiteiro.bomcredito.services.UserService;
+import br.com.allangaiteiro.bomcredito.model.Customer;
+import br.com.allangaiteiro.bomcredito.services.CustomerService;
 
 @RestController
-@RequestMapping("/api/v1/users")
-public class UserResource {
+@RequestMapping("/api/v1/customer")
+public class CustomerResource {
     @Autowired
-    private UserService service;
+    private CustomerService service;
 
     @GetMapping("/")
-    public ResponseEntity<List<UserAuth>> getAll() {
-        System.out.println("Get All Users");
-        List<UserAuth> users = service.findAll();
-        return ResponseEntity.ok().body(users);
+    public ResponseEntity<List<Customer>> getAll() {
+        System.out.println("Get All Customer");
+        List<Customer> customer = service.findAll();
+        return ResponseEntity.ok().body(customer);
 
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<UserAuth> getById(@PathVariable("id") Integer id) {
-        System.out.println("Get Curso: " + id);
+    public ResponseEntity<Customer> getById(@PathVariable("id") Integer id) {
+        System.out.println("Get Customer: " + id);
         try {
-            UserAuth user = service.findById(id);
-            return ResponseEntity.ok().body(user);
+            Customer customer = service.findById(id);
+            return ResponseEntity.ok().body(customer);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
@@ -45,10 +45,10 @@ public class UserResource {
     }
 
     @PostMapping("/")
-    public ResponseEntity<URI> create(@RequestBody UserAuth user) {
-        System.out.println("Create User");
+    public ResponseEntity<URI> create(@RequestBody Customer customer) {
+        System.out.println("Create Customer");
         try {
-            UserAuth u = service.create(user);
+            Customer u = service.create(customer);
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(u.getId()).toUri();
             return ResponseEntity.ok().body(uri);
         } catch (Exception e) {
@@ -58,10 +58,10 @@ public class UserResource {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<URI> create(@PathVariable("id") Integer id, @RequestBody UserAuth user) {
-        System.out.println("Delete User");
+    public ResponseEntity<URI> create(@PathVariable("id") Integer id, @RequestBody Customer customer) {
+        System.out.println("Delete Customer");
         try {
-            UserAuth ua = service.update(id, user);
+            Customer ua = service.update(id, customer);
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ua.getId()).toUri();
             return ResponseEntity.created(uri).build();
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class UserResource {
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> create(@PathVariable("id") Integer id) {
-        System.out.println("Delete User");
+        System.out.println("Delete customer");
         try {
             service.delete(id);
             return ResponseEntity.noContent().build();
