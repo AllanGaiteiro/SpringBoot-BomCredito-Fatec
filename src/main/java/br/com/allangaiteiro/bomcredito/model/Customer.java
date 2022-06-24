@@ -15,6 +15,9 @@ public class Customer {
     @Column(nullable = false, length = 50)
     private String name;
 
+    @Column(nullable = false, length = 14)
+    private String cpf;
+
     public Customer() {
     }
 
@@ -36,6 +39,14 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     @Override
