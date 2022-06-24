@@ -48,8 +48,8 @@ public class InstitutionResource {
     public ResponseEntity<URI> create(@RequestBody Institution institution) {
         System.out.println("Create Institution");
         try {
-            Institution u = service.create(institution);
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(u.getId()).toUri();
+            Institution inst = service.create(institution);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(inst.getId()).toUri();
             return ResponseEntity.ok().body(uri);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -61,8 +61,8 @@ public class InstitutionResource {
     public ResponseEntity<URI> create(@PathVariable("id") Integer id, @RequestBody Institution institution) {
         System.out.println("Delete Institution");
         try {
-            Institution ua = service.update(id, institution);
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ua.getId()).toUri();
+            Institution inst = service.update(id, institution);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(inst.getId()).toUri();
             return ResponseEntity.created(uri).build();
         } catch (Exception e) {
             return ResponseEntity.notFound().build();

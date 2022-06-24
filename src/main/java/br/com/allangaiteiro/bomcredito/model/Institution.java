@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Institution {
@@ -16,13 +17,16 @@ public class Institution {
 
     @Column(nullable = false, length = 50)
     public String name;
+    
+    @JoinColumn(name = "created-at")
     private Date createdAt;
 
     public Institution() {
     }
 
-    public Institution(String name) {
+    public Institution(String name,Date createdAt) {
         this.name = name;
+        this.createdAt = createdAt;
     }
 
     public Integer getId() {
@@ -46,7 +50,7 @@ public class Institution {
     }
 
     public void setCreatedAt(Date createdAt) {
-        this.createdAt = new Date();
+        this.createdAt = createdAt;
     }
 
     @Override
