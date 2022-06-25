@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html
-  lang="pt-br"
-  xmlns:th="http://www.thymeleaf.com"
->
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,26 +10,29 @@
   <body>
     <!--Nav-->
     <div th:replace="~{layout/nav::nav}"></div>
+
+    <!--menu-->
+    <div th:replace="~{layout/menu::menu ('customers')}"></div>
     <!--Main-->
     <main class="container-fluid">
-        <h1>Lista de Clientes</h1>
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">cliente</th>
-              <th scope="col">cpf</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="customer: ${customers}">
-              <th scope="row" th:text="${customer.id}"></th>
-              <td th:text="${customer.name}"></td>
-              <td th:text="${customer.cpf}"></td>
-            </tr>
-          </tbody>
-        </table>
-      </main>
+      <h1>Lista de Clientes</h1>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">cliente</th>
+            <th scope="col">cpf</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="customer: ${customers}">
+            <th scope="row" th:text="${customer.id}"></th>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.cpf}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
     <script th:src="@{../js/bootstrap.min.js}"></script>
     <script th:src="@{../js/all.js}"></script>
   </body>
