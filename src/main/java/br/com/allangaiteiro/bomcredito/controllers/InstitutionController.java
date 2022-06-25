@@ -37,7 +37,7 @@ public class InstitutionController {
         } catch (Exception e) {
             // TODO: handle exception
         }
-        return "redirect:/" + this.pathReturn("save");
+        return "redirect:/institutions/list";
     }
 
     private String pathReturn(String param) {

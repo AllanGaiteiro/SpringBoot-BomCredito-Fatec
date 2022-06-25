@@ -37,7 +37,7 @@ public class CustomerController {
         } catch (Exception e) {
             // TODO: handle exception
         }
-        return "redirect:/" + this.pathReturn("save");
+        return "redirect:/customers/list";
     }
 
     private String pathReturn(String param) {

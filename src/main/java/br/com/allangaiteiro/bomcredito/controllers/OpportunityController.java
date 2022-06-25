@@ -37,7 +37,7 @@ public class OpportunityController {
         } catch (Exception e) {
             // TODO: handle exception
         }
-        return "redirect:/" + this.pathReturn("save");
+        return "redirect:/opportunities/list";
     }
 
     private String pathReturn(String param) {
