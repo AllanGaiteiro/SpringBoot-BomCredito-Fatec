@@ -21,8 +21,9 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name) {
+    public Customer(String name,String cpf) {
         this.name = name;
+        this.cpf = cpf;
     }
 
     public Integer getId() {
@@ -51,7 +52,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + "]";
+        return "Customer [cpf=" + cpf + ", id=" + id + ", name=" + name + "]";
     }
     
 }
