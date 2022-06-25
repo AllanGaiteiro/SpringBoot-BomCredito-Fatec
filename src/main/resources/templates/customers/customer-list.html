@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
     <title>Bom Credito</title>
   </head>
   <body>
@@ -15,27 +15,25 @@
     <div th:replace="~{layout/nav::nav}"></div>
     <!--Main-->
     <main class="container-fluid">
-        <h1>Lista de Oportunidades</h1>
+        <h1>Lista de Clientes</h1>
         <table class="table">
           <thead class="thead-dark">
             <tr>
               <th scope="col">id</th>
-              <th scope="col">data criação</th>
-              <th scope="col">instituição</th>
               <th scope="col">cliente</th>
+              <th scope="col">cpf</th>
             </tr>
           </thead>
           <tbody>
-            <tr th:each="op: ${opportunities}">
-              <th scope="row" th:text="${op.id}"></th>
-              <td th:text="${op.createdAt}"></td>
-              <td th:text="${op.institution.name}"></td>
-              <td th:text="${op.customer.name}"></td>
+            <tr th:each="customer: ${customers}">
+              <th scope="row" th:text="${customer.id}"></th>
+              <td th:text="${customer.name}"></td>
+              <td th:text="${customer.cpf}"></td>
             </tr>
           </tbody>
         </table>
       </main>
-    <script th:src="@{js/bootstrap.min.js}"></script>
-    <script th:src="@{js/all.js}"></script>
+    <script th:src="@{../js/bootstrap.min.js}"></script>
+    <script th:src="@{../js/all.js}"></script>
   </body>
 </html>

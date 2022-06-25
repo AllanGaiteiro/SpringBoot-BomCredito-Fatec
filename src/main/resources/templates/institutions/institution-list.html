@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+    <title>Bom Credito</title>
+  </head>
+  <body>
+    <!--Nav-->
+    <div th:replace="~{layout/nav::nav}"></div>
+    <!--Main-->
+    <main class="container-fluid">
+      <h1>Lista de Instituições</h1>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">data criação</th>
+            <th scope="col">instituição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="institution: ${institutions}">
+            <th scope="row" th:text="${institution.id}"></th>
+            <td th:text="${institution.createdAt}"></td>
+            <td th:text="${institution.name}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <script th:src="@{../js/bootstrap.min.js}"></script>
+    <script th:src="@{../js/all.js}"></script>
+  </body>
+</html>
