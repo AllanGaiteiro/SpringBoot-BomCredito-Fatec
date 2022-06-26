@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
-  <head >
-    <div th:replace="~{fragments/head::head}">
-    </div>
+  <head>
+    <div th:replace="~{fragments/head::head}"></div>
     <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{../css/sidebar.css}">
+    <link rel="stylesheet" th:href="@{../css/sidebar.css}" />
   </head>
-  
+
   <body>
     <div class="page-wrapper chiller-theme toggled">
       <!--menu-expance-->
@@ -14,27 +13,36 @@
       <!--Nav-->
       <div th:replace="~{fragments/sidebar::sidebar}"></div>
       <!--Main-->
-    <main class="page-content">
-      <div class="container-fluid">
-      <h1>Lista de Clientes</h1>
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">cliente</th>
-            <th scope="col">cpf</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="customer: ${customers}">
-            <th scope="row" th:text="${customer.id}"></th>
-            <td th:text="${customer.name}"></td>
-            <td th:text="${customer.cpf}"></td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-    </main>
+      <main class="page-content">
+        <div class="container-fluid">
+          <a
+            th:replace="~{customers/customer-metrics::co-metrics (${coMetric})}"
+          ></a>
+          <h1>Lista de Clientes</h1>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">cliente</th>
+                <th scope="col">cpf</th>
+                <th scope="col">ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="customer: ${customers}">
+                <th scope="row" th:text="${customer.id}"></th>
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.cpf}"></td>
+                <td>
+                  <a th:href="@{/customers/{id}(id=${customer.id})}"
+                    >Visualizar</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
     </div>
     <div th:replace="~{fragments/scripts::scripts}"></div>
     <script th:src="@{../js/sidebar.js}"></script>
