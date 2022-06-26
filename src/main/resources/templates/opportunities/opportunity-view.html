@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
+  <head>
+    <div th:replace="~{fragments/head::head}"></div>
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{../css/sidebar.css}" />
+  </head>
+
+  <body>
+    <div class="page-wrapper chiller-theme toggled">
+      <!--menu-expance-->
+      <a th:replace="~{fragments/menu::menu_expance}"></a>
+      <!--Nav-->
+      <div th:replace="~{fragments/sidebar::sidebar}"></div>
+      <!--Main-->
+      <main class="page-content">
+        <div class="container-fluid">
+          <form
+            th:action="@{/opportunities/update/{id}(id=${opportunity.id})}"
+            method="post"
+            th:object="${opportunity}"
+          >
+            <legend>Opportunidade <span th:text="${opportunity.id}"></span></legend>
+            <div class="mb-3">
+              <label for="name" class="form-label">Cliente:</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{customer.name}"
+                placeholder="Digite nome do Cliente"
+                aria-label="Digite nome do Cliente"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="cpf" class="form-label">Instituição:</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{institution.name}"
+                placeholder="Digite o no da Instituição"
+                aria-label="Digite o no da Instituição"
+              />
+              <!-- 
+          <div id="cpfHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+          -->
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+        </div>
+      </main>
+    </div>
+    <div th:replace="~{fragments/scripts::scripts}"></div>
+    <script th:src="@{../js/sidebar.js}"></script>
+    <script th:src="@{../js/bootstrap.min.js}"></script>
+    <script th:src="@{../js/all.js}"></script>
+  </body>
+</html>

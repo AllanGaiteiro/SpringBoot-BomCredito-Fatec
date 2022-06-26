@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
-  <head >
-    <div th:replace="~{fragments/head::head}">
-    </div>
+  <head>
+    <div th:replace="~{fragments/head::head}"></div>
     <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{../css/sidebar.css}">
+    <link rel="stylesheet" th:href="@{../css/sidebar.css}" />
   </head>
-  
+
   <body>
     <div class="page-wrapper chiller-theme toggled">
       <!--menu-expance-->
@@ -14,36 +13,38 @@
       <!--Nav-->
       <div th:replace="~{fragments/sidebar::sidebar}"></div>
       <!--Main-->
-    <main class="page-content">
-      <div class="container-fluid">
-        
-        <a th:replace="~{opportunities/opportunity-metrics::opp-metrics (${size} ,${sizeDay},${sizeMonth},${size})}"></a>
-
-        <h1>Lista de Oportunidades</h1>
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">data criação</th>
-              <th scope="col">instituição</th>
-              <th scope="col">cliente</th>
-              <th scope="col">ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="op: ${opportunities}">
-              <th scope="row" th:text="${op.id}"></th>
-              <td th:text="${op.createdAt}"></td>
-              <td th:text="${op.institution.name}"></td>
-              <td th:text="${op.customer.name}"></td>
-              <td>
-                <a th:href="@{/opportunities/{id}(id=${op.id})}">Visualizar</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
+      <main class="page-content">
+        <div class="container-fluid">
+          <a
+            th:replace="~{opportunities/opportunity-metrics::opp-metrics (${oppMetric})}"
+          ></a>
+          <h1>Lista de Oportunidades</h1>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">data criação</th>
+                <th scope="col">instituição</th>
+                <th scope="col">cliente</th>
+                <th scope="col">ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="op: ${opportunities}">
+                <th scope="row" th:text="${op.id}"></th>
+                <td th:text="${op.createdAt}"></td>
+                <td th:text="${op.institution.name}"></td>
+                <td th:text="${op.customer.name}"></td>
+                <td>
+                  <a th:href="@{/opportunities/{id}(id=${op.id})}"
+                    >Visualizar</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
     </div>
     <div th:replace="~{fragments/scripts::scripts}"></div>
     <script th:src="@{../js/sidebar.js}"></script>
