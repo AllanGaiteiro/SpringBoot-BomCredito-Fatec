@@ -69,4 +69,25 @@ public class InstitutionService {
         }
 
     }
+
+    //////// Metrics
+    public long countAll() {
+        return repository.countAll();
+    }
+
+    public long countMonth() {
+        return repository.countMonth();
+    }
+
+    public long countBeforeMonth() {
+        return repository.countBeforeMonth();
+    }
+
+    public long countDAY() {
+        return repository.countDAY();
+    }
+
+    public long countBeforeDAY() {
+        return repository.countBeforeDAY();
+    }
 }

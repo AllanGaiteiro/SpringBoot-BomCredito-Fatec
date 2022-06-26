@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import br.com.allangaiteiro.bomcredito.model.Opportunity;
@@ -20,7 +19,7 @@ public class OpportunityService {
         try {
             opportunity.setCreatedAt(new Date());
             Opportunity opportunityRepo = repository.save(opportunity);
-            System.out.println("Opportunity Service Create - Succes"+opportunityRepo.toString());
+            System.out.println("Opportunity Service Create - Succes" + opportunityRepo.toString());
             return opportunity;
         } catch (Exception e) {
             System.out.println("Opportunity Service Create - Not Found");
@@ -73,19 +72,23 @@ public class OpportunityService {
     }
 
     //////// Metrics
-    public long contAll() {
-        long size =  repository.contAll();
-        System.out.println(size);
-        return size;
+    public long countAll() {
+        return repository.countAll();
     }
-    public long contForMonth() {
-        long size =  repository.contMonth();
-        System.out.println(size);
-        return size;
+
+    public long countMonth() {
+        return repository.countMonth();
     }
-    public long contForDay() {
-        long size =  repository.contDAY();
-        System.out.println(size);
-        return size;
+
+    public long countBeforeMonth() {
+        return repository.countBeforeMonth();
+    }
+
+    public long countDAY() {
+        return repository.countDAY();
+    }
+
+    public long countBeforeDAY() {
+        return repository.countBeforeDAY();
     }
 }

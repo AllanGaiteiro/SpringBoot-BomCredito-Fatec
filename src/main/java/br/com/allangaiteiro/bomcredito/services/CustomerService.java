@@ -30,6 +30,7 @@ public class CustomerService {
         try {
             Customer customerRepo = repository.findById(id).get();
             customerRepo.setName(customerUpdate.getName());
+            customerRepo.setCpf(customerUpdate.getCpf());
             Customer customer = repository.save(customerRepo);
             System.out.println("Customer Service Update - Succes");
             return customer;
@@ -67,5 +68,26 @@ public class CustomerService {
         }
 
     }
+
+        //////// Metrics
+        public long countAll() {
+            return repository.countAll();
+        }
+    
+        public long countMonth() {
+            return repository.countMonth();
+        }
+    
+        public long countBeforeMonth() {
+            return repository.countBeforeMonth();
+        }
+    
+        public long countDAY() {
+            return repository.countDAY();
+        }
+    
+        public long countBeforeDAY() {
+            return repository.countBeforeDAY();
+        }
 
 }
