@@ -18,7 +18,7 @@ public class Institution {
     @Column(nullable = false, length = 50)
     public String name;
     
-    @JoinColumn(name = "created-at")
+    @JoinColumn(name = "created_at")
     private Date createdAt;
 
     public Institution() {
