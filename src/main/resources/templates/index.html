@@ -1,40 +1,20 @@
 <!DOCTYPE html>
-<html
-  lang="pt-br"
-  xmlns:th="http://www.thymeleaf.com"
->
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
-    <title>Bom Credito</title>
+    <div th:replace="~{fragments/head::head}"></div>
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{../css/sidebar.css}" />
   </head>
   <body>
-    <!--Nav-->
-    <div th:replace="~{layout/nav::nav}"></div>
-    <!--Main-->
-    <main class="container-fluid">
-        <h1>Lista de Oportunidades</h1>
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">data criação</th>
-              <th scope="col">instituição</th>
-              <th scope="col">cliente</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="op: ${opportunities}">
-              <th scope="row" th:text="${op.id}"></th>
-              <td th:text="${op.createdAt}"></td>
-              <td th:text="${op.institution.name}"></td>
-              <td th:text="${op.customer.name}"></td>
-            </tr>
-          </tbody>
-        </table>
-      </main>
+    <div class="page-wrapper chiller-theme toggled">
+      <!--menu-expance-->
+      <a th:replace="~{fragments/menu::menu_expance}"></a>
+      <!--Nav-->
+      <div th:replace="~{fragments/sidebar::sidebar}"></div>
+      <!--Main-->
+    </div>
+    <div th:replace="~{fragments/scripts::scripts}"></div>
+    <script th:src="@{js/sidebar.js}"></script>
     <script th:src="@{js/bootstrap.min.js}"></script>
     <script th:src="@{js/all.js}"></script>
   </body>
