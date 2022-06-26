@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import br.com.allangaiteiro.bomcredito.model.Opportunity;
@@ -69,5 +70,22 @@ public class OpportunityService {
             throw new Exception("not-delte");
         }
 
+    }
+
+    //////// Metrics
+    public long contAll() {
+        long size =  repository.contAll();
+        System.out.println(size);
+        return size;
+    }
+    public long contForMonth() {
+        long size =  repository.contMonth();
+        System.out.println(size);
+        return size;
+    }
+    public long contForDay() {
+        long size =  repository.contDAY();
+        System.out.println(size);
+        return size;
     }
 }
