@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head >
+    <div th:replace="~{fragments/head::head}">
+    </div>
     <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
-    <title>Bom Credito</title>
+    <link rel="stylesheet" th:href="@{../css/sidebar.css}">
   </head>
+  
   <body>
-    <!--Nav-->
-    <div th:replace="~{layout/nav::nav}"></div>
-
-    <!--menu-->
-    <div th:replace="~{layout/menu::menu ('customers')}"></div>
-    <!--Main-->
-    <main class="container-fluid">
+    <div class="page-wrapper chiller-theme toggled">
+      <!--menu-expance-->
+      <a th:replace="~{fragments/menu::menu_expance}"></a>
+      <!--Nav-->
+      <div th:replace="~{fragments/sidebar::sidebar}"></div>
+      <!--Main-->
+    <main class="page-content">
+      <div class="container-fluid">
       <h1>Lista de Clientes</h1>
       <table class="table">
         <thead class="thead-dark">
@@ -32,7 +33,11 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </main>
+    </div>
+    <div th:replace="~{fragments/scripts::scripts}"></div>
+    <script th:src="@{../js/sidebar.js}"></script>
     <script th:src="@{../js/bootstrap.min.js}"></script>
     <script th:src="@{../js/all.js}"></script>
   </body>
