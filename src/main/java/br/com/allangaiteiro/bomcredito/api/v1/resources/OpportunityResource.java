@@ -81,4 +81,13 @@ public class OpportunityResource {
         }
 
     }
+
+    //// metrics
+    @GetMapping("/count")
+    public ResponseEntity<Long> contAll() {
+        System.out.println("count All Opportunity");
+        long size = service.contAll();
+        return ResponseEntity.ok().body(size);
+
+    }
 }

@@ -21,7 +21,14 @@ public class OpportunityController {
     @GetMapping("/list")
     public String list(Model model) {
         List<Opportunity> opportunities = service.findAll();
+        long size = service.contAll();
+        long sizeDay = service.contForDay();
+        long sizeMonth = service.contForMonth();
+
         model.addAttribute("opportunities", opportunities);
+        model.addAttribute("size", size);
+        model.addAttribute("sizeDay", sizeDay);
+        model.addAttribute("sizeMonth", sizeMonth);
         return this.pathReturn("list");
     }
 
