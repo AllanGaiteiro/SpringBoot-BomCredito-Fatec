@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
+  <head>
+    <div th:replace="~{fragments/head::head}"></div>
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{../css/sidebar.css}" />
+  </head>
+
+  <body>
+    <div class="page-wrapper chiller-theme toggled">
+      <!--menu-expance-->
+      <a th:replace="~{fragments/menu::menu_expance}"></a>
+      <!--Nav-->
+      <div th:replace="~{fragments/sidebar::sidebar}"></div>
+      <!--Main-->
+      <main class="page-content">
+        <div class="container-fluid">
+          <form
+            th:action="@{/institutions/update/{id}(id=${institution.id})}"
+            method="post"
+            th:object="${institution}"
+          >
+            <legend>Instituição</legend>
+            <div class="mb-3">
+              <label for="name" class="form-label">Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{name}"
+                placeholder="Digite seu nome"
+                aria-label="Digite seu nome"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+        </div>
+      </main>
+    </div>
+    <div th:replace="~{fragments/scripts::scripts}"></div>
+    <script th:src="@{../js/sidebar.js}"></script>
+    <script th:src="@{../js/bootstrap.min.js}"></script>
+    <script th:src="@{../js/all.js}"></script>
+  </body>
+</html>

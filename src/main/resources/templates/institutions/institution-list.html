@@ -16,6 +16,9 @@
       <!--Main-->
     <main class="page-content">
       <div class="container-fluid">
+        <a
+        th:replace="~{institutions/institution-metrics::inst-metrics (${instMetric})}"
+      ></a>
         <h1>Lista de Instituições</h1>
         <table class="table">
           <thead class="thead-dark">
@@ -23,6 +26,7 @@
               <th scope="col">id</th>
               <th scope="col">data criação</th>
               <th scope="col">instituição</th>
+              <th scope="col">ação</th>
             </tr>
           </thead>
           <tbody>
@@ -30,6 +34,11 @@
               <th scope="row" th:text="${institution.id}"></th>
               <td th:text="${institution.createdAt}"></td>
               <td th:text="${institution.name}"></td>
+              <td>
+                <a th:href="@{/institutions/{id}(id=${institution.id})}"
+                  >Visualizar</a
+                >
+              </td>
             </tr>
           </tbody>
         </table>
