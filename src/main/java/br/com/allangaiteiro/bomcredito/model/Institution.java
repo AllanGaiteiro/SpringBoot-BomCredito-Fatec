@@ -10,23 +10,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 
 @Entity
-public class Institution {
+public class Institution extends Credit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, length = 50)
     public String name;
-    
+
     @JoinColumn(name = "created_at")
     private Date createdAt;
 
     public Institution() {
     }
 
-    public Institution(String name,Date createdAt) {
+    public Institution(float valueMin, float valueMax, float guarantee, Integer id, String name, Date createdAt) {
+        super(valueMin, valueMax, guarantee);
+        this.id = id;
         this.name = name;
-        this.createdAt = createdAt;
+        this.createdAt = new Date();
     }
 
     public Integer getId() {

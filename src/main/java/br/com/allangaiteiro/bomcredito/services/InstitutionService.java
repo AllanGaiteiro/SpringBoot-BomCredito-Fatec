@@ -69,6 +69,10 @@ public class InstitutionService {
         }
 
     }
+    
+    //// metodos 
+
+    // indentificar solicitação de creditos 
 
     //////// Metrics
     public long countAll() {
