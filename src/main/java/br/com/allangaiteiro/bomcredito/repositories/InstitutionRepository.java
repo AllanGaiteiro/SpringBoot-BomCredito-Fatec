@@ -9,17 +9,17 @@ import br.com.allangaiteiro.bomcredito.model.Institution;
 @Repository
 public interface InstitutionRepository extends JpaRepository<Institution, Integer> {
     @Query("SELECT COUNT(id) FROM Institution")
-    long contAll();
+    long countAll();
 
     @Query("SELECT  SUM( CASE WHEN  MONTH(created_at) = MONTH(NOW()) THEN 1 ELSE 0 END ) from  Institution")
-    long contMonth();
+    long countMonth();
 
     @Query("SELECT  SUM( CASE WHEN  MONTH(created_at) = MONTH(NOW())-1 THEN 1 ELSE 0 END ) from  Institution")
-    long contBeforeMonth();
+    long countBeforeMonth();
 
     @Query("SELECT  SUM( CASE WHEN MONTH(created_at) = MONTH(NOW()) AND  DAY(created_at) = DAY(NOW()) THEN 1 ELSE 0 END ) from  Institution")
-    long contDAY();
+    long countDAY();
 
     @Query("SELECT  SUM( CASE WHEN MONTH(created_at) = MONTH(NOW()) AND  DAY(created_at) = DAY(NOW())-1 THEN 1 ELSE 0 END ) from  Institution")
-    long contBeforeDAY();
+    long countBeforeDAY();
 }
