@@ -14,14 +14,8 @@ import br.com.allangaiteiro.bomcredito.services.OpportunityService;
 @RequestMapping
 @Controller
 public class IndexController {
-    @Autowired
-    private OpportunityService service;
-
     @GetMapping("/")
-    public String index(Model model) {
-        List<Opportunity> opportunities = service.findAll();
-        System.out.println(opportunities);
-        model.addAttribute("opportunities", opportunities);
-     return "index";   
+    public String index() {
+     return "redirect:/opportunities/list";   
     }
 }
