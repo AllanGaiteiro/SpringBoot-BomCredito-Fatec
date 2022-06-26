@@ -1,10 +1,13 @@
 package br.com.allangaiteiro.bomcredito.model;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Customer {
@@ -18,12 +21,16 @@ public class Customer {
     @Column(nullable = false, length = 14)
     private String cpf;
 
+    @JoinColumn(name = "created_at")
+    private Date createdAt;
+
     public Customer() {
     }
 
     public Customer(String name,String cpf) {
         this.name = name;
         this.cpf = cpf;
+        this.createdAt = new Date();
     }
 
     public Integer getId() {
@@ -50,6 +57,13 @@ public class Customer {
         this.cpf = cpf;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
     @Override
     public String toString() {
         return "Customer [cpf=" + cpf + ", id=" + id + ", name=" + name + "]";
