@@ -23,10 +23,10 @@
             <legend>Opportunidade <span th:text="${opportunity.id}"></span></legend>
             <div class="mb-3">
               <label for="name" class="form-label">Cliente:</label>
-              <input
+              <input readonly
                 type="text"
                 class="form-control"
-                th:field="*{customer.name}"
+                th:field="*{creditRequest.customer.name}"
                 placeholder="Digite nome do Cliente"
                 aria-label="Digite nome do Cliente"
               />

@@ -10,7 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class CreditRequest extends Credit {
+public class CreditRequest{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,23 +22,20 @@ public class CreditRequest extends Credit {
     @JoinColumn(name = "created_at")
     private Date createdAt;
 
-    private Integer value;
+    private String guarantee;
+
+    @JoinColumn(name = "credit_value")
+    private Integer creditValue;
 
     public CreditRequest() {
     }
 
-    public CreditRequest(Integer id, Customer customer, Integer value) {
-        this.id = id;
+    public CreditRequest(String guarantee, Customer customer,
+            Integer creditValue) {
+        //super(value, value, guarantee);
+        this.guarantee = guarantee;
         this.customer = customer;
-        this.value = value;
-    }
-
-    public CreditRequest(float valueMin, float valueMax, float guarantee, Integer id, Customer customer,
-            Integer value) {
-        super(valueMin, valueMax, guarantee);
-        this.id = id;
-        this.customer = customer;
-        this.value = value;
+        this.creditValue = creditValue;
         this.createdAt = new Date();
     }
 
@@ -59,11 +56,11 @@ public class CreditRequest extends Credit {
     }
 
     public Integer getValue() {
-        return value;
+        return creditValue;
     }
 
-    public void setValue(Integer value) {
-        this.value = value;
+    public void setValue(Integer creditValue) {
+        this.creditValue = creditValue;
     }
 
     public Date getCreatedAt() {
@@ -76,8 +73,24 @@ public class CreditRequest extends Credit {
 
     @Override
     public String toString() {
-        return "CreditRequest [createdAt=" + createdAt + ", customer=" + customer + ", id=" + id + ", value=" + value
+        return "CreditRequest [createdAt=" + createdAt + ", customer=" + customer + ", id=" + id + ", creditValue=" + creditValue
                 + "]";
+    }
+
+    public String getGuarantee() {
+        return guarantee;
+    }
+
+    public void setGuarantee(String guarantee) {
+        this.guarantee = guarantee;
+    }
+
+    public Integer getCreditValue() {
+        return creditValue;
+    }
+
+    public void setCreditValue(Integer creditValue) {
+        this.creditValue = creditValue;
     }
 
 }
