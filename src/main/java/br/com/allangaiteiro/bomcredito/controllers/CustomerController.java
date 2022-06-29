@@ -1,5 +1,6 @@
 package br.com.allangaiteiro.bomcredito.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.allangaiteiro.bomcredito.model.Customer;
 import br.com.allangaiteiro.bomcredito.model.CustomerMetric;
+import br.com.allangaiteiro.bomcredito.model.RequestDay;
+import br.com.allangaiteiro.bomcredito.model.dashboard.DashboardMonth;
 import br.com.allangaiteiro.bomcredito.services.CustomerService;
 
 @RequestMapping("/customers")
@@ -23,7 +26,7 @@ public class CustomerController {
     @GetMapping("/list")
     public String list(Model model) {
         List<Customer> customers = service.findAll();
-                
+
         long total = service.countAll();
         long day = service.countDAY();
         long beforeDay = service.countBeforeDAY();
@@ -31,21 +34,33 @@ public class CustomerController {
         long beforeMonth = service.countBeforeMonth();
         CustomerMetric coMetric = new CustomerMetric(total, day, beforeDay, month, beforeMonth);
 
+        List<RequestDay> requestDays = service.dashboardMonth();
+        List<Integer> listDays = new ArrayList<>();
+        List<Integer> listValue = new ArrayList<>();
+        for (RequestDay requestDay : requestDays) {
+            listDays.add(requestDay.getDia());
+            listValue.add(requestDay.getTotal());
+        }
+
+        DashboardMonth dashboardMonth = new DashboardMonth("Cliente cadastrados nesse mes", listDays, listValue);
+
+        model.addAttribute("listDays", dashboardMonth.listDays);
+        model.addAttribute("listValue", dashboardMonth.listValue);
         model.addAttribute("coMetric", coMetric);
         model.addAttribute("customers", customers);
         return this.pathReturn("list");
     }
 
     @GetMapping("/{id}")
-    public String create(Model model,@PathVariable("id") Integer id) {
+    public String create(Model model, @PathVariable("id") Integer id) {
         try {
-        Customer customer = service.findById(id);
-        model.addAttribute("customer", customer);
-        return this.pathReturn("view");           
+            Customer customer = service.findById(id);
+            model.addAttribute("customer", customer);
+            return this.pathReturn("view");
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
         }
-        return this.pathReturn("list");            
+        return this.pathReturn("list");
     }
 
     @GetMapping("/create")
@@ -62,10 +77,11 @@ public class CustomerController {
         }
         return "redirect:/customers/list";
     }
+
     @PostMapping("/update/{id}")
-    public String save(@PathVariable("id") Integer id,Customer customer) {
+    public String save(@PathVariable("id") Integer id, Customer customer) {
         try {
-            Customer opp = service.update(id,customer);
+            Customer opp = service.update(id, customer);
             System.out.println(id + " - " + opp);
         } catch (Exception e) {
             // TODO: handle exception
