@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.allangaiteiro.bomcredito.model.Opportunity;
 import br.com.allangaiteiro.bomcredito.model.Opportunity;
 import br.com.allangaiteiro.bomcredito.model.OpportunityMetric;
+import br.com.allangaiteiro.bomcredito.model.RequestDay;
+import br.com.allangaiteiro.bomcredito.model.dashboard.DashboardMonth;
 import br.com.allangaiteiro.bomcredito.services.OpportunityService;
 
 @RequestMapping("/opportunities")
@@ -32,6 +34,11 @@ public class OpportunityController {
         long beforeMonth = service.countBeforeMonth();
         OpportunityMetric oppMetric = new OpportunityMetric(total, day, beforeDay, month, beforeMonth);
 
+        List<RequestDay> requestDays = service.dashboardMonth();
+        DashboardMonth dashboardMonth = new DashboardMonth("Opportunidades cadastrados nesse mes", requestDays);
+        
+        model.addAttribute("listDays", dashboardMonth.listDays);
+        model.addAttribute("listValue", dashboardMonth.listValue);
         model.addAttribute("opportunities", opportunities);
         model.addAttribute("oppMetric", oppMetric);
         return this.pathReturn("list");

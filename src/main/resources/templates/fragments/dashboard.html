@@ -45,7 +45,12 @@
               }]
             },
             options: {
+              plugins:{
+                title: {text:"teste",
+                display:true},
+              },
               scales: {
+                
                 yAxes: [{
                   ticks: {
                     beginAtZero: true
@@ -53,8 +58,7 @@
                 }]
               },
               legend: {
-                name: "teste",
-                display: true
+                display: false,
               }
             }
           })

@@ -19,7 +19,13 @@
           <a
             th:replace="~{customers/customer-metrics::co-metrics (${coMetric})}"
           ></a>
-          <a th:replace="~{fragments/dashboard::dashboard (400,200,${listDays},${listValue})}"></a>
+          <!--Dashboard--->
+          <div class="w-75">
+            <canvas
+              th:replace="~{fragments/dashboard::dashboard (300,150,${listDays},${listValue})}"
+            ></canvas>
+          </div>
+
           <h1>Lista de Clientes</h1>
           <table class="table">
             <thead class="thead-dark">
@@ -50,6 +56,6 @@
     <script th:src="@{../js/sidebar.js}"></script>
     <script th:src="@{../js/bootstrap.min.js}"></script>
     <script th:src="@{../js/bootstrap.bundle.min.js}"></script>
-    <script  th:src="@{../js/all.js}"></script>
+    <script th:src="@{../js/all.js}"></script>
   </body>
 </html>

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.allangaiteiro.bomcredito.model.Institution;
 import br.com.allangaiteiro.bomcredito.model.InstitutionMetric;
+import br.com.allangaiteiro.bomcredito.model.RequestDay;
+import br.com.allangaiteiro.bomcredito.model.dashboard.DashboardMonth;
 import br.com.allangaiteiro.bomcredito.services.InstitutionService;
 
 @RequestMapping("/institutions")
@@ -29,8 +31,14 @@ public class InstitutionController {
         long beforeDay = service.countBeforeDAY();
         long month = service.countMonth();
         long beforeMonth = service.countBeforeMonth();
+        
         InstitutionMetric instMetric = new InstitutionMetric(total, day, beforeDay, month, beforeMonth);
 
+        List<RequestDay> requestDays = service.dashboardMonth();
+        DashboardMonth dashboardMonth = new DashboardMonth("Instituições cadastrados nesse mes", requestDays);
+
+        model.addAttribute("listDays", dashboardMonth.listDays);
+        model.addAttribute("listValue", dashboardMonth.listValue);
         model.addAttribute("instMetric", instMetric);
         model.addAttribute("institutions", institutions);
         return this.pathReturn("list");

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
-  <head >
-    <div th:replace="~{fragments/head::head}">
-    </div>
+  <head>
+    <div th:replace="~{fragments/head::head}"></div>
     <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{../css/sidebar.css}">
+    <link rel="stylesheet" th:href="@{../css/sidebar.css}" />
   </head>
-  
+
   <body>
     <div class="page-wrapper chiller-theme toggled">
       <!--menu-expance-->
@@ -14,36 +13,42 @@
       <!--Nav-->
       <div th:replace="~{fragments/sidebar::sidebar}"></div>
       <!--Main-->
-    <main class="page-content">
-      <div class="container-fluid">
-        <a
-        th:replace="~{institutions/institution-metrics::inst-metrics (${instMetric})}"
-      ></a>
-        <h1>Lista de Instituições</h1>
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">data criação</th>
-              <th scope="col">instituição</th>
-              <th scope="col">ação</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="institution: ${institutions}">
-              <th scope="row" th:text="${institution.id}"></th>
-              <td th:text="${institution.createdAt}"></td>
-              <td th:text="${institution.name}"></td>
-              <td>
-                <a th:href="@{/institutions/{id}(id=${institution.id})}"
-                  >Visualizar</a
-                >
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
+      <main class="page-content">
+        <div class="container-fluid">
+          <a
+            th:replace="~{institutions/institution-metrics::inst-metrics (${instMetric})}"
+          ></a>
+          <!--Dashboard--->
+          <div class="w-75">
+            <canvas
+              th:replace="~{fragments/dashboard::dashboard (300,150,${listDays},${listValue})}"
+            ></canvas>
+          </div>
+          <h1>Lista de Instituições</h1>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">data criação</th>
+                <th scope="col">instituição</th>
+                <th scope="col">ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="institution: ${institutions}">
+                <th scope="row" th:text="${institution.id}"></th>
+                <td th:text="${institution.createdAt}"></td>
+                <td th:text="${institution.name}"></td>
+                <td>
+                  <a th:href="@{/institutions/{id}(id=${institution.id})}"
+                    >Visualizar</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
     </div>
     <div th:replace="~{fragments/scripts::scripts}"></div>
     <script th:src="@{../js/sidebar.js}"></script>
