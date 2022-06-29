@@ -62,23 +62,26 @@ public class Metric {
     public long getPercentDay() {
         return percentDay;
     }
+
     public String getPercentDayString() {
         return Long.toString(percentDay) + '%';
     }
 
     private void setPercentDay() {
-        this.percentDay = this.beforeDay == 0 ? 100 :((this.day / this.beforeDay) - 1) * 100;
+        this.percentDay = this.beforeDay == 0 && this.day != 0 ? 100
+                : this.day == 0 ? 0 : ((this.day / this.beforeDay) - 1) * 100;
     }
 
     public long getPercentMonth() {
         return percentMonth;
     }
+
     public String getPercentMonthString() {
         return Long.toString(percentMonth) + '%';
     }
 
     private void setPercentMonth() {
-        this.percentMonth = this.beforeMonth == 0 ? 100 :((this.month / this.beforeMonth) - 1) * 100;
+        this.percentMonth = this.beforeMonth == 0 ? 100 : ((this.month / this.beforeMonth) - 1) * 100;
     }
 
     @Override
