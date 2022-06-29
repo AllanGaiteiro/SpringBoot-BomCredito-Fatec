@@ -35,14 +35,7 @@ public class CustomerController {
         CustomerMetric coMetric = new CustomerMetric(total, day, beforeDay, month, beforeMonth);
 
         List<RequestDay> requestDays = service.dashboardMonth();
-        List<Integer> listDays = new ArrayList<>();
-        List<Integer> listValue = new ArrayList<>();
-        for (RequestDay requestDay : requestDays) {
-            listDays.add(requestDay.getDia());
-            listValue.add(requestDay.getTotal());
-        }
-
-        DashboardMonth dashboardMonth = new DashboardMonth("Cliente cadastrados nesse mes", listDays, listValue);
+        DashboardMonth dashboardMonth = new DashboardMonth("Cliente cadastrados nesse mes", requestDays);
 
         model.addAttribute("listDays", dashboardMonth.listDays);
         model.addAttribute("listValue", dashboardMonth.listValue);
