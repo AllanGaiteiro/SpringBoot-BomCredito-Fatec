@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.allangaiteiro.bomcredito.model.CreditRequest;
 import br.com.allangaiteiro.bomcredito.repositories.CreditRequestRepository;
-import br.com.allangaiteiro.bomcredito.repositories.CreditRequestRepository;
 
 @Service
 public class CreditRequestService {
@@ -18,6 +17,7 @@ public class CreditRequestService {
 
     public CreditRequest create(CreditRequest creditRequest) throws Exception {
         try {
+            // create Credit request
             creditRequest.setCreatedAt(new Date());
             CreditRequest creditRequestRepo = repository.save(creditRequest);
             System.out.println("CreditRequest Service Create - Succes" + creditRequestRepo.toString());
@@ -32,7 +32,6 @@ public class CreditRequestService {
     public CreditRequest update(Integer id, CreditRequest creditRequestUpdate) throws Exception {
         try {
             CreditRequest creditRequestRepo = repository.findById(id).get();
-            //creditRequestRepo.setInstitution(creditRequestUpdate.getInstitution());
             creditRequestRepo.setCustomer(creditRequestUpdate.getCustomer());
             CreditRequest creditRequest = repository.save(creditRequestRepo);
             System.out.println("CreditRequest Service Update - Succes");
@@ -73,14 +72,6 @@ public class CreditRequestService {
     }
 
     /// methodos de credito
-
-    // indentificar opps
-
-    // reprocessar opps
-
-
-
-
     //////// Metrics
     public long countAll() {
         return repository.countAll();
