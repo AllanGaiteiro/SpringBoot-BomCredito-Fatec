@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.allangaiteiro.bomcredito.model.Opportunity;
+import br.com.allangaiteiro.bomcredito.model.RequestDay;
+import br.com.allangaiteiro.bomcredito.model.RequestMonth;
 import br.com.allangaiteiro.bomcredito.repositories.OpportunityRepository;
 
 @Service
@@ -32,7 +34,7 @@ public class OpportunityService {
         try {
             Opportunity opportunityRepo = repository.findById(id).get();
             opportunityRepo.setInstitution(opportunityUpdate.getInstitution());
-            opportunityRepo.setCustomer(opportunityUpdate.getCustomer());
+            opportunityRepo.setCreditRequest(opportunityUpdate.getCreditRequest());
             Opportunity opportunity = repository.save(opportunityRepo);
             System.out.println("Opportunity Service Update - Succes");
             return opportunity;
@@ -69,6 +71,14 @@ public class OpportunityService {
             throw new Exception("not-delte");
         }
 
+    }
+    ///////// Dashboards
+    public List<RequestDay> dashboardMonth() {
+        return repository.dashboardMonth();
+    }
+
+    public List<RequestMonth> dashboardYear() {
+        return repository.dashboardYear();
     }
 
     //////// Metrics

@@ -19,17 +19,19 @@ public class Opportunity {
     private Date createdAt;
 
     @ManyToOne
+    @JoinColumn(name = "id_credit_request")
+    private CreditRequest creditRequest;
+
+    @ManyToOne
     @JoinColumn(name = "id_institution")
     private Institution institution;
 
-    @ManyToOne
-    @JoinColumn(name = "id_customer")
-    private Institution customer;
-
     public Opportunity() {
     }
-    public Opportunity(Customer customer, Institution institution) {
+
+    public Opportunity(Institution institution, CreditRequest creditRequest) {
         this.institution = institution;
+        this.creditRequest = creditRequest;
         this.createdAt = new Date();
     }
 
@@ -41,18 +43,20 @@ public class Opportunity {
         this.id = id;
     }
 
+    public CreditRequest getCreditRequest() {
+        return creditRequest;
+    }
+
+    public void setCreditRequest(CreditRequest creditRequest) {
+        this.creditRequest = creditRequest;
+    }
+
     public Institution getInstitution() {
         return institution;
     }
 
     public void setInstitution(Institution institution) {
         this.institution = institution;
-    }
-    public Institution getCustomer() {
-        return customer;
-    }
-    public void setCustomer(Institution customer) {
-        this.customer = customer;
     }
 
     public Date getCreatedAt() {
@@ -64,8 +68,8 @@ public class Opportunity {
     }
     @Override
     public String toString() {
-        return "Opportunity [createdAt=" + createdAt + ", customer=" + customer + ", id=" + id + ", institution="
-                + institution + "]";
+        return "Opportunity [createdAt=" + createdAt + ", creditRequest=" + creditRequest + ", id=" + id
+                + ", institution=" + institution + "]";
     }
 
 }

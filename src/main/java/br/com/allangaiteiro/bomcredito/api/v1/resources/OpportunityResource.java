@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.allangaiteiro.bomcredito.model.Opportunity;
+import br.com.allangaiteiro.bomcredito.model.RequestDay;
 import br.com.allangaiteiro.bomcredito.services.OpportunityService;
 
 @RestController
@@ -81,6 +82,15 @@ public class OpportunityResource {
         }
 
     }
+
+        //// metrics
+        @GetMapping("/dash")
+        public ResponseEntity<List<RequestDay>> dashboardMonth() {
+            System.out.println("dash Opportunity");
+            List<RequestDay> dash = service.dashboardMonth();
+            return ResponseEntity.ok().body(dash);
+    
+        }
 
     //// metrics
     @GetMapping("/count")
