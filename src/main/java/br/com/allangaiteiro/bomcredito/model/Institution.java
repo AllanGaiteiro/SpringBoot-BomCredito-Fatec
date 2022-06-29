@@ -24,7 +24,7 @@ public class Institution extends Credit {
     public Institution() {
     }
 
-    public Institution(float valueMin, float valueMax, float guarantee, Integer id, String name, Date createdAt) {
+    public Institution(float valueMin, float valueMax, String guarantee, Integer id, String name, Date createdAt) {
         super(valueMin, valueMax, guarantee);
         this.id = id;
         this.name = name;
