@@ -3,12 +3,12 @@ package br.com.allangaiteiro.bomcredito.model;
 public class Credit {
     private float valueMin;
     private float valueMax;
-    private float guarantee;
+    private String guarantee;
 
     public Credit() {
     }
 
-    public Credit(float valueMin, float valueMax, float guarantee) {
+    public Credit(float valueMin, float valueMax, String guarantee) {
         this.valueMin = valueMin;
         this.valueMax = valueMax;
         this.guarantee = guarantee;
@@ -30,11 +30,11 @@ public class Credit {
         this.valueMax = valueMax;
     }
 
-    public float getGuarantee() {
+    public String getGuarantee() {
         return guarantee;
     }
 
-    public void setGuarantee(float guarantee) {
+    public void setGuarantee(String guarantee) {
         this.guarantee = guarantee;
     }
 
