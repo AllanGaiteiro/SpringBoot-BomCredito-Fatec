@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.allangaiteiro.bomcredito.model.Customer;
+import br.com.allangaiteiro.bomcredito.model.RequestDay;
+import br.com.allangaiteiro.bomcredito.model.RequestMonth;
 import br.com.allangaiteiro.bomcredito.repositories.CustomerRepository;
 
 @Service
@@ -69,25 +71,34 @@ public class CustomerService {
 
     }
 
-        //////// Metrics
-        public long countAll() {
-            return repository.countAll();
-        }
-    
-        public long countMonth() {
-            return repository.countMonth();
-        }
-    
-        public long countBeforeMonth() {
-            return repository.countBeforeMonth();
-        }
-    
-        public long countDAY() {
-            return repository.countDAY();
-        }
-    
-        public long countBeforeDAY() {
-            return repository.countBeforeDAY();
-        }
+    ///////// Dashboards
+    public List<RequestDay> dashboardMonth() {
+        return repository.dashboardMonth();
+    }
+
+    public List<RequestMonth> dashboardYear() {
+        return repository.dashboardYear();
+    }
+
+    //////// Metrics
+    public long countAll() {
+        return repository.countAll();
+    }
+
+    public long countMonth() {
+        return repository.countMonth();
+    }
+
+    public long countBeforeMonth() {
+        return repository.countBeforeMonth();
+    }
+
+    public long countDAY() {
+        return repository.countDAY();
+    }
+
+    public long countBeforeDAY() {
+        return repository.countBeforeDAY();
+    }
 
 }
