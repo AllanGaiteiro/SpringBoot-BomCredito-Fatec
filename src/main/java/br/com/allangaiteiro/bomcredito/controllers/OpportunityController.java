@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.allangaiteiro.bomcredito.model.CreditRequest;
 import br.com.allangaiteiro.bomcredito.model.Institution;
 import br.com.allangaiteiro.bomcredito.model.Opportunity;
-import br.com.allangaiteiro.bomcredito.model.Opportunity;
 import br.com.allangaiteiro.bomcredito.model.OpportunityMetric;
 import br.com.allangaiteiro.bomcredito.model.RequestDay;
 import br.com.allangaiteiro.bomcredito.model.dashboard.DashboardMonth;
