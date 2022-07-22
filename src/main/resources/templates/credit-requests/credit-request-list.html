@@ -43,9 +43,21 @@
                 <td th:text="${creditRequest.customer.name}"></td>
                 <td th:text="${creditRequest.guarantee}"></td>
                 <td>
-                  <a th:href="@{/credit-requests/{id}(id=${creditRequest.id})}"
-                    >Visualizar</a
-                  >
+                  <div class="d-flex">
+                    <a
+                      th:href="@{/credit-requests/{id}(id=${creditRequest.id})}"
+                      class="btn btn-primary"
+                      >Visualizar</a
+                    >
+                    <form
+                      th:action="@{/credit-requests/{id}(id=${creditRequest.id})}"
+                      th:method="delete"
+                    >
+                      <button type="submit" class="btn btn-danger">
+                        Deletar
+                      </button>
+                    </form>
+                  </div>
                 </td>
               </tr>
             </tbody>

@@ -39,9 +39,21 @@
                 <td th:text="${institution.createdAt}"></td>
                 <td th:text="${institution.name}"></td>
                 <td>
-                  <a th:href="@{/institutions/{id}(id=${institution.id})}"
-                    >Visualizar</a
-                  >
+                  <div class="d-flex">
+                    <a
+                      th:href="@{/institutions/{id}(id=${institution.id})}"
+                      class="btn btn-primary"
+                      >Visualizar</a
+                    >
+                    <form
+                    th:action="@{/institutions/{id}(id=${institution.id})}"
+                    th:method="delete"
+                    >
+                      <button type="submit" class="btn btn-danger">
+                        Deletar
+                      </button>
+                    </form>
+                  </div>
                 </td>
               </tr>
             </tbody>

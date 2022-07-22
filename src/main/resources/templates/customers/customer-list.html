@@ -41,9 +41,21 @@
                 <td th:text="${customer.name}"></td>
                 <td th:text="${customer.cpf}"></td>
                 <td>
-                  <a th:href="@{/customers/{id}(id=${customer.id})}"
-                    >Visualizar</a
-                  >
+                  <div class="d-flex">
+                    <a
+                      th:href="@{/customers/{id}(id=${customer.id})}"
+                      class="btn btn-primary"
+                      >Visualizar</a
+                    >
+                    <form
+                    th:action="@{/customers/{id}(id=${customer.id})}"
+                    th:method="delete"
+                    >
+                      <button type="submit" class="btn btn-danger">
+                        Deletar
+                      </button>
+                    </form>
+                  </div>
                 </td>
               </tr>
             </tbody>
