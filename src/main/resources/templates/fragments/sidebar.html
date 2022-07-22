@@ -76,15 +76,21 @@
             <li class="sidebar-dropdown">
               <a href="#">
                 <i class="fa-solid fa-money-bill-transfer"></i>
-                <span>Linhas de Credito</span>
+                <span>Linhas de Creditos</span>
               </a>
               <div class="sidebar-submenu">
                 <ul>
                   <li>
-                    Em Breve
+                    <a th:href="@{/credit-requests/list}">lista de Creditos</a>
                   </li>
+                  <!----                  
+                    <li>
+                    <a th:href="@{/credit-requests/create}">Criar Nova Linha Credito</a>
+                    </li>
+                    ---->
                 </ul>
               </div>
+            </li>
             </li>
             <li class="sidebar-dropdown">
               <a href="#">

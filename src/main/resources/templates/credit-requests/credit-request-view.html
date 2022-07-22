@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
+  <head>
+    <div th:replace="~{fragments/head::head}"></div>
+    <link rel="stylesheet" th:href="@{../css/sidebar.css}" />
+  </head>
+
+  <body>
+    <div class="page-wrapper chiller-theme toggled">
+      <!--menu-expance-->
+      <a th:replace="~{fragments/menu::menu_expance}"></a>
+      <!--Nav-->
+      <div th:replace="~{fragments/sidebar::sidebar}"></div>
+      <!--Main-->
+      <main class="page-content">
+        <div class="container-fluid">
+          <form
+            th:action="@{/credit-requests/update/{id}(id=${creditRequest.id})}"
+            method="post"
+            th:object="${creditRequest}"
+          >
+            <legend>
+              Requisição de Credito <span th:text="${creditRequest.id}"></span>
+            </legend>
+            <div class="mb-3">
+              <label for="name" class="form-label">Cliente:</label>
+              <input
+                readonly
+                type="text"
+                name="name"
+                class="form-control"
+                th:field="*{customer.name}"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="createdAt" class="form-label">Data de Criação:</label>
+              <input
+                readonly
+                type="text"
+                name="createdAt"
+                class="form-control"
+                th:field="*{createdAt}"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="guarantee" class="form-label">Garantias :</label>
+              <input
+                type="text"
+                name="guarantee"
+                class="form-control"
+                th:field="*{guarantee}"
+                placeholder="Digite a garantia"
+                aria-label="Digite a garantia"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="creditValue" class="form-label">Valor :</label>
+              <input
+                type="text"
+                name="creditValue"
+                class="form-control"
+                th:field="*{creditValue}"
+                placeholder="Digite a garantia"
+                aria-label="Digite a garantia"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+        </div>
+      </main>
+    </div>
+    <div th:replace="~{fragments/scripts::scripts}"></div>
+    <script th:src="@{../js/sidebar.js}"></script>
+    <script th:src="@{../js/all.js}"></script>
+  </body>
+</html>

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.allangaiteiro.bomcredito.model.CreditRequest;
+import br.com.allangaiteiro.bomcredito.model.RequestDay;
+import br.com.allangaiteiro.bomcredito.model.RequestMonth;
 import br.com.allangaiteiro.bomcredito.repositories.CreditRequestRepository;
 
 @Service
@@ -70,8 +72,16 @@ public class CreditRequestService {
         }
 
     }
+    
+    ///////// Dashboards
+    public List<RequestDay> dashboardMonth() {
+        return repository.dashboardMonth();
+    }
 
-    /// methodos de credito
+    public List<RequestMonth> dashboardYear() {
+        return repository.dashboardYear();
+    }
+
     //////// Metrics
     public long countAll() {
         return repository.countAll();

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.com">
+  <head>
+    <div th:replace="~{fragments/head::head}"></div>
+    <link rel="stylesheet" th:href="@{../css/sidebar.css}" />
+    <link rel="stylesheet" th:href="@{../css/dashboard.css}" />
+  </head>
+
+  <body>
+    <div class="page-wrapper chiller-theme toggled">
+      <!--menu-expance-->
+      <a th:replace="~{fragments/menu::menu_expance}"></a>
+      <!--Nav-->
+      <div th:replace="~{fragments/sidebar::sidebar}"></div>
+      <!--Main-->
+      <main class="page-content">
+        <div class="container-fluid">
+          <a
+            th:replace="~{opportunities/opportunity-metrics::opp-metrics (${oppMetric})}"
+          ></a>
+          <!--Dashboard--->
+          <div class="w-75">
+            <canvas
+              th:replace="~{fragments/dashboard::dashboard (300,150,${listDays},${listValue})}"
+            ></canvas>
+          </div>
+
+          <h1>Lista de Requisição de Credito</h1>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">data criação</th>
+                <th scope="col">cliente</th>
+                <th scope="col">garantias</th>
+                <th scope="col">ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="creditRequest: ${creditRequests}">
+                <th scope="row" th:text="${creditRequest.id}"></th>
+                <td th:text="${creditRequest.createdAt}"></td>
+                <td th:text="${creditRequest.customer.name}"></td>
+                <td th:text="${creditRequest.guarantee}"></td>
+                <td>
+                  <a th:href="@{/credit-requests/{id}(id=${creditRequest.id})}"
+                    >Visualizar</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <div th:replace="~{fragments/scripts::scripts}"></div>
+    <script th:src="@{../js/sidebar.js}"></script>
+    <script th:src="@{../js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{../js/all.js}"></script>
+  </body>
+</html>
