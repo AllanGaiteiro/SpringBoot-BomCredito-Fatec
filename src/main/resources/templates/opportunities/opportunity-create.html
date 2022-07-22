@@ -15,35 +15,31 @@
       <main class="page-content">
         <div class="container-fluid">
           <form
-            th:action="@{/customers/save}"
+            th:action="@{/opportunities/save}"
             method="post"
-            th:object="${customer}"
+            th:object="${opportunity}"
           >
-            <legend>Criar Cliente</legend>
+            <legend>Criar Opportunidade</legend>
             <div class="mb-3">
-              <label for="name" class="form-label">Name:</label>
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{name}"
-                placeholder="Digite seu nome"
-                aria-label="Digite seu nome"
-              />
+              <label for="institution" class="form-label">Instituições:</label>
+              <select th:field="*{institution}">
+                <option
+                  th:each="i : ${institutions}"
+                  th:value="${i.id}"
+                  th:text="${i.name}"
+                ></option>
+              </select>
             </div>
             <div class="mb-3">
-              <label for="cpf" class="form-label">cpf:</label>
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{cpf}"
-                placeholder="Digite seu cpf"
-                aria-label="Digite seu cpf"
-              />
-              <!-- 
-          <div id="cpfHelp" class="form-text">
-            We'll never share your email with anyone else.
-          </div>
-          -->
+              <label for="creditRequest" class="form-label">Cliente Requesitando Credito:</label>
+              <select th:field="*{creditRequest}">
+                <option th:value="null" th:selected="true">select option</option>
+                <option
+                  th:each="c : ${creditRequests}"
+                  th:value="${c.id}"
+                  th:text="${c.customer.name}"
+                ></option>
+              </select>
             </div>
             <button type="submit" class="btn btn-primary">Criar</button>
           </form>
