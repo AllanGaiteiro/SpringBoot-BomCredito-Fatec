@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.allangaiteiro.bomcredito.model.CreditRequest;
@@ -71,11 +73,22 @@ public class CreditRequestController {
         return "redirect:/credit-requests/list";
     }
 
-    @PostMapping("/update/{id}")
-    public String save(@PathVariable("id") Integer id, CreditRequest creditRequest) {
+    @PutMapping("/{id}")
+    public String update(@PathVariable("id") Integer id, CreditRequest creditRequest) {
         try {
             CreditRequest credit = service.update(id, creditRequest);
             System.out.println(id + " - " + credit);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return "redirect:/credit-requests/list";
+    }
+
+    @DeleteMapping("{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        try {
+            service.delete(id);
+            System.out.println("Credit Request - delete success");
         } catch (Exception e) {
             // TODO: handle exception
         }

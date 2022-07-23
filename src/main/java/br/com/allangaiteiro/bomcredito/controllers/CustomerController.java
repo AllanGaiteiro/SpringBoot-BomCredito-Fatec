@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.allangaiteiro.bomcredito.model.Customer;
@@ -71,11 +73,22 @@ public class CustomerController {
         return "redirect:/customers/list";
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/{id}")
     public String save(@PathVariable("id") Integer id, Customer customer) {
         try {
             Customer opp = service.update(id, customer);
             System.out.println(id + " - " + opp);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return "redirect:/customers/list";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        try {
+            service.delete(id);
+            System.out.println("Customer - delete success");
         } catch (Exception e) {
             // TODO: handle exception
         }

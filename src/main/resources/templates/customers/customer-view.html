@@ -15,8 +15,8 @@
       <main class="page-content">
         <div class="container-fluid">
           <form
-            th:action="@{/customers/update/{id}(id=${customer.id})}"
-            method="post"
+            th:action="@{/customers/{id}(id=${customer.id})}"
+            th:method="put"
             th:object="${customer}"
           >
             <legend>Cliente</legend>
@@ -39,11 +39,6 @@
                 placeholder="Digite seu cpf"
                 aria-label="Digite seu cpf"
               />
-              <!-- 
-          <div id="cpfHelp" class="form-text">
-            We'll never share your email with anyone else.
-          </div>
-          -->
             </div>
             <button type="submit" class="btn btn-primary">Salvar</button>
           </form>

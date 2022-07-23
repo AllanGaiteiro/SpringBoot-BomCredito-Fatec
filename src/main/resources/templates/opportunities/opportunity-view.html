@@ -15,8 +15,8 @@
       <main class="page-content">
         <div class="container-fluid">
           <form
-            th:action="@{/opportunities/update/{id}(id=${opportunity.id})}"
-            method="post"
+            th:action="@{/opportunities/{id}(id=${opportunity.id})}"
+            th:method="put"
             th:object="${opportunity}"
           >
             <legend>Opportunidade <span th:text="${opportunity.id}"></span></legend>
