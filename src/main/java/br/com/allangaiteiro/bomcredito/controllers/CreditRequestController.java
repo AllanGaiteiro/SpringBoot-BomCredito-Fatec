@@ -77,7 +77,7 @@ public class CreditRequestController {
     public String update(@PathVariable("id") Integer id, CreditRequest creditRequest) {
         try {
             CreditRequest credit = service.update(id, creditRequest);
-            System.out.println(id + " - " + credit);
+            
         } catch (Exception e) {
             // TODO: handle exception
         }

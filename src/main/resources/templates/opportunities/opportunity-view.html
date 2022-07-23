@@ -21,24 +21,24 @@
           >
             <legend>Opportunidade <span th:text="${opportunity.id}"></span></legend>
             <div class="mb-3">
-              <label for="name" class="form-label">Cliente:</label>
+              <label for="name" class="form-label">Credito Requesitado:</label>
               <input readonly
                 type="text"
                 class="form-control"
-                th:field="*{creditRequest.customer.name}"
+                th:field="*{creditRequest}"
                 placeholder="Digite nome do Cliente"
                 aria-label="Digite nome do Cliente"
               />
             </div>
             <div class="mb-3">
-              <label for="cpf" class="form-label">Instituição:</label>
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{institution.name}"
-                placeholder="Digite o no da Instituição"
-                aria-label="Digite o no da Instituição"
-              />
+              <label for="institution" class="form-label">Instituições:</label>
+              <select th:field="*{institution}">
+                <option
+                  th:each="i : ${institutions}"
+                  th:value="${i.id}"
+                  th:text="${i.name}"
+                ></option>
+              </select>
             </div>
             <button type="submit" class="btn btn-primary">Salvar</button>
           </form>

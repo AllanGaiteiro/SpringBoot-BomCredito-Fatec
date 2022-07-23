@@ -56,7 +56,9 @@ public class OpportunityController {
     @GetMapping("/{id}")
     public String create(Model model, @PathVariable("id") Integer id) {
         try {
+            List<Institution> institutions = instService.findAll();
             Opportunity opportunity = service.findById(id);
+            model.addAttribute("institutions", institutions);
             model.addAttribute("opportunity", opportunity);
             return this.pathReturn("view");
         } catch (Exception e) {
@@ -93,7 +95,7 @@ public class OpportunityController {
     public String save(@PathVariable("id") Integer id, Opportunity opportunity) {
         try {
             Opportunity opp = service.update(id, opportunity);
-            System.out.println(id + " - " + opp);
+
         } catch (Exception e) {
             // TODO: handle exception
         }
